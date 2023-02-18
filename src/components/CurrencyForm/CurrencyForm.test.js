@@ -14,8 +14,8 @@ describe('Component CurrencyForm', () => {
     render(<CurrencyForm action={() => { }} />);
   });
 
-  for (const testObj of testCases) {
-    it('should run action callback with proper data on form submit', () => {
+  it('should run action callback with proper data on form submit', () => {
+      for (const testObj of testCases) {
       const action = jest.fn();
 
       // render component
@@ -37,13 +37,13 @@ describe('Component CurrencyForm', () => {
       // simulate user click on "convert" button
       userEvent.click(submitButton);
 
-      const res = {...testObj, amount: Number(testObj.amount)}
+      const res = { ...testObj, amount: Number(testObj.amount)}
 
       // check if action callback was called once and with proper argument
       expect(action).toHaveBeenCalledTimes(1);
       expect(action).toHaveBeenCalledWith(res);
-    })
-    // unmount component
-    cleanup()
-  }
+      // unmount component
+      cleanup()
+    }
+  });
 });
